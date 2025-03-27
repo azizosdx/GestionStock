@@ -2,6 +2,8 @@ package meddeb.aziz.itbs.entity;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
@@ -10,7 +12,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MouvementStock {
 
 	
@@ -25,7 +34,10 @@ public class MouvementStock {
     @Enumerated(EnumType.STRING)
     private TypeMouvementStock type;
 
+    @Column
     private int quantite;
+    
+    @Column
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
