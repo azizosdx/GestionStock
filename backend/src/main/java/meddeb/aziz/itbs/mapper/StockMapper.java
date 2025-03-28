@@ -1,5 +1,21 @@
 package meddeb.aziz.itbs.mapper;
 
+import meddeb.aziz.itbs.dto.ProduitDTO;
+import meddeb.aziz.itbs.entity.Produit;
+import org.mapstruct.Mapper;
+
+import java.util.List;
+
+@Mapper(componentModel = "spring")
 public interface StockMapper {
+
+
+    ProduitDTO produitToProduitDTO(Produit produit);
+    Produit produitDTOToProduit(ProduitDTO produitDTO);
+    List<ProduitDTO> produitsToProduitsDTO(List<Produit> produits);
+    List<Produit> produitsDTOToProduits(List<ProduitDTO> produitsDTO);
+
+
+
 
 }
