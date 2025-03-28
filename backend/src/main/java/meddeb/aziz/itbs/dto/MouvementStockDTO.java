@@ -1,5 +1,6 @@
 package meddeb.aziz.itbs.dto;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 import lombok.Data;
@@ -16,7 +17,7 @@ public class MouvementStockDTO {
     
     private TypeMouvementStock type; 
     
-    private LocalDateTime date;
+    private Date date;
     
     private String entrepotNom;
 }
