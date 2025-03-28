@@ -12,7 +12,5 @@ public class EntrepotDTO {
     
     private String adresse;
     
-    private List<StockDTO> stocks;
-    
     private int capacite;
 }

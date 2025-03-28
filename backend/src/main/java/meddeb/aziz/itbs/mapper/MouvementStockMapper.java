@@ -8,8 +8,9 @@ import meddeb.aziz.itbs.dto.EntrepotDTO;
 import meddeb.aziz.itbs.dto.MouvementStockDTO;
 import meddeb.aziz.itbs.entity.Entrepot;
 import meddeb.aziz.itbs.entity.MouvementStock;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
-@Mapper(componentModel = "spring")
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,componentModel = "spring")
 public interface MouvementStockMapper {
 
     MouvementStock mouvementStockDTOToEntity (MouvementStockDTO mouvementStockDTO);

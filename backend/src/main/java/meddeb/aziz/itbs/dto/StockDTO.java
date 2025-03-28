@@ -4,8 +4,12 @@ import lombok.Data;
 
 @Data
 public class StockDTO {
+
     private Long id;
-    private String produitNom;
+
+    private ProduitDTO produit;
+
     private int quantite;
-    private String entrepotNom;
+
+    private EntrepotDTO entrepot;
 }

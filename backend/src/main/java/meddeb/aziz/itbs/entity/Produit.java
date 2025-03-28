@@ -6,32 +6,33 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Produit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id ;
 	
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false, unique = true)
 	private String nom ; 
-	
-	@Column
+
 	private String categorie;
-	
-	@Column
+
 	private double prix;
-	
-	@Column
-	private String fournissuer;
-	
-	@Column
+
+	private String fournisseur;
+
 	private int seuilMin;
-	
+
 }

@@ -6,8 +6,9 @@ import org.mapstruct.Mapper;
 
 import meddeb.aziz.itbs.dto.EntrepotDTO;
 import meddeb.aziz.itbs.entity.Entrepot;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
-@Mapper(componentModel = "spring")
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,componentModel = "spring")
 public interface EntrepotMapper {
 
 	Entrepot entrepotDTOToEntity (EntrepotDTO entrepotDTO);
