@@ -25,15 +25,12 @@ public class ProduitService implements IProduitService {
     private ProduitMapper produitMapper;
 
 
-
-
     public ProduitDTO createProduit(ProduitDTO produitDTO) throws Exception {
         Produit existingProduit = produitRepository.findByNom(produitDTO.getNom());
 
         if (existingProduit != null) {
             throw new Exception("Produit déjà existant");
         }
-
 
         Produit item = produitMapper.produitDTOToEntity(produitDTO);
 
@@ -43,16 +40,18 @@ public class ProduitService implements IProduitService {
     }
 
 
-//    public ProduitDTO updateProduit(ProduitDTO produitDTO) throws Exception {
-//        Produit existingProduit = produitRepository.findById(produitDTO.getId())
-//                .orElseThrow(() -> new Exception("Produit non trouvé"));
-//
-//        Produit item = produitMapper.produitDTOToEntity(produitDTO);
-//
-//        Produit updatedProduit = produitRepository.save(item);
-//
-//        return produitMapper.entityToProduitDTO(updatedProduit);
-//    }
+    public ProduitDTO updateProduit(Long id, ProduitDTO produitDTO) throws Exception {
+        Produit existingProduit = produitRepository.findById(id)
+                .orElseThrow(() -> new Exception("Produit non trouvé"));
+
+        produitDTO.setId(id); // assure la cohérence de l'identifiant
+        produitMapper.produitDTOToEntity(produitDTO, existingProduit);
+
+        Produit updatedProduit = produitRepository.save(existingProduit);
+
+        return produitMapper.entityToProduitDTO(updatedProduit);
+    }
+
 
     public void deleteProduit(Long id) throws Exception {
         Produit existingProduit = produitRepository.findById(id)
