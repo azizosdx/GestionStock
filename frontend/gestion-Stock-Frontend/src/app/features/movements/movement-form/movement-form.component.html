@@ -1,0 +1,59 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Modifier Mouvement' : (movementForm.get('type')?.value === 'entrée' ? 'Nouvelle Entrée' : 'Nouvelle Sortie') }}</h2>
+  
+  <form [formGroup]="movementForm" (ngSubmit)="onSubmit()" class="movement-form">
+    <div class="form-group">
+      <label for="produit">Produit</label>
+      <select id="produit" formControlName="produit" class="form-control">
+        <option value="">Sélectionner un produit</option>
+        <option *ngFor="let product of products" [ngValue]="product">
+          {{product.nom}}
+        </option>
+      </select>
+      <div class="error-message" *ngIf="movementForm.get('produit')?.touched && movementForm.get('produit')?.invalid">
+        Le produit est requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="entrepot">Entrepôt</label>
+      <select id="entrepot" formControlName="entrepot" class="form-control">
+        <option value="">Sélectionner un entrepôt</option>
+        <option *ngFor="let warehouse of warehouses" [ngValue]="warehouse">
+          {{warehouse.nom}}
+        </option>
+      </select>
+      <div class="error-message" *ngIf="movementForm.get('entrepot')?.touched && movementForm.get('entrepot')?.invalid">
+        L'entrepôt est requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Type de mouvement</label>
+      <select id="type" formControlName="type" class="form-control">
+        <option value="ENTREE">Entrée</option>
+        <option value="SORTIE">Sortie</option>
+      </select>
+      <div class="error-message" *ngIf="movementForm.get('type')?.touched && movementForm.get('type')?.invalid">
+        Le type de mouvement est requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="quantite">Quantité</label>
+      <input id="quantite" type="number" formControlName="quantite" class="form-control">
+      <div class="error-message" *ngIf="movementForm.get('quantite')?.touched && movementForm.get('quantite')?.invalid">
+        La quantité est requise et doit être positive
+      </div>
+    </div>
+
+    
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" routerLink="/movements">Annuler</button>
+      <button type="submit" class="btn btn-primary" [disabled]="movementForm.invalid">
+        {{ isEditMode ? 'Modifier' : 'Créer' }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,76 @@
+<div class="dashboard-layout">
+
+  <div class="main-content">
+    <div class="dashboard-header">
+      <h1>Dashboard Overview</h1>
+    </div>
+    
+    <div class="dashboard-grid">
+      <div class="dashboard-card">
+        <i class="fas fa-box card-icon"></i>
+        <div class="card-content">
+          <h3>Total Products</h3>
+          <div class="card-value">{{totalProducts}}</div>
+        </div>
+      </div>
+      
+      <div class="dashboard-card">
+        <i class="fas fa-warehouse card-icon"></i>
+        <div class="card-content">
+          <h3>Total Warehouses</h3>
+          <div class="card-value">{{totalWarehouses}}</div>
+        </div>
+      </div>
+      
+      <div class="dashboard-card">
+        <i class="fas fa-exclamation-triangle card-icon"></i>
+        <div class="card-content">
+          <h3>Low Stock Alerts</h3>
+          <div class="card-value alert">{{lowStockAlerts}}</div>
+        </div>
+      </div>
+      
+      <div class="dashboard-card">
+        <i class="fas fa-exchange-alt card-icon"></i>
+        <div class="card-content">
+          <h3>Recent Movements</h3>
+          <div class="card-value">{{recentMovements}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-charts">
+      <div class="chart-container">
+        <h3>Stock Distribution</h3>
+        <div class="stock-distribution">
+          <div class="distribution-item" *ngFor="let item of stockDistribution">
+            <div class="warehouse-name">{{item.warehouse}}</div>
+            <div class="quantity-bar">
+              <div class="bar" [style.width.%]="(item.quantity / getMaxQuantity()) * 100"></div>
+            </div>
+            <div class="quantity-value">{{item.quantity}}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="chart-container">
+        <h3>Recent Movements</h3>
+        <div class="recent-movements-list">
+          <div class="movement-item" *ngFor="let movement of recentMovementsList">
+            <div class="movement-type" [class.entry]="movement.type === 'ENTREE'" [class.exit]="movement.type === 'SORTIE'">
+              <i class="fas" [class.fa-arrow-up]="movement.type === 'ENTREE'" [class.fa-arrow-down]="movement.type === 'SORTIE'"></i>
+            </div>
+            <div class="movement-details">
+              <div class="movement-product">{{movement.produit.nom}}</div>
+              <div class="movement-info">
+                <span class="quantity">{{movement.quantite}} units</span>
+                <span class="warehouse">{{movement.entrepot.nom}}</span>
+              </div>
+              <div class="movement-date">{{movement.date | date:'short'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

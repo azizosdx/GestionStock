@@ -1,0 +1,72 @@
+<div class="stocks-container">
+  <div class="stocks-header">
+    <h1>Stocks</h1>
+    <button class="btn btn-primary" routerLink="add">
+      <i class="fas fa-plus"></i> Ajouter Stock
+    </button>
+  </div>
+
+  <div class="filters-section">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input 
+        type="text" 
+        [formControl]="searchControl" 
+        placeholder="Rechercher par produit ou entrepôt..."
+        class="search-input"
+      >
+    </div>
+
+    <div class="filters">
+      <div class="filter-group">
+        <label>Entrepôt</label>
+        <select [formControl]="warehouseFilter" class="filter-select">
+          <option value="">Tous les entrepôts</option>
+          <option *ngFor="let warehouse of warehouses" [value]="warehouse.nom">
+            {{warehouse.nom}}
+          </option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>État du stock</label>
+        <select [formControl]="quantityFilter" class="filter-select">
+          <option value="all">Tous les stocks</option>
+          <option value="low">Stock bas</option>
+          <option value="normal">Stock normal</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="stocks-grid">
+    <div *ngFor="let stock of filteredStocks" class="stock-card">
+      <div class="stock-content">
+        <h3>{{stock.produit.nom}}</h3>
+        <p class="warehouse">Entrepôt: {{stock.entrepot.nom}}</p>
+        <p class="quantity">Quantité: {{stock.quantite}}</p>
+        <p class="quantity">seuilAlerte: {{stock.seuilAlerte}}</p>
+      </div>
+      <div class="stock-actions">
+        <button class="btn btn-edit" [routerLink]="['/stocks/edit', stock.id]">
+          <i class="fas fa-edit"></i> Modifier
+        </button>
+        <button class="btn btn-delete" (click)="confirmDelete(stock)">
+          <i class="fas fa-trash"></i> Supprimer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal" *ngIf="showDeleteModal">
+    <div class="modal-content">
+      <h3>Confirmer la suppression</h3>
+      <p>Êtes-vous sûr de vouloir supprimer ce stock?</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" (click)="cancelDelete()">Annuler</button>
+        <button class="btn btn-danger" (click)="deleteStock()">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>

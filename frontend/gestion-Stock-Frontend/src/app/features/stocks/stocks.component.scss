@@ -1,0 +1,371 @@
+.stocks-container {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 4rem);
+
+  .stocks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    
+    h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin: 0;
+    }
+
+    .btn-primary {
+      background: #3498db;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+
+      &:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+      }
+    }
+  }
+
+  .stocks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .stock-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .stock-content {
+      margin-bottom: 1.5rem;
+
+      h3 {
+        font-size: 1.25rem;
+        color: #2c3e50;
+        margin: 0 0 1rem;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 0.5rem 0;
+        color: #5d6d7e;
+        font-size: 0.95rem;
+        line-height: 1.5;
+
+        &.warehouse {
+          color: #34495e;
+          font-weight: 500;
+        }
+
+        &.quantity {
+          color: #2980b9;
+          font-weight: 500;
+        }
+
+        &.date {
+          color: #7f8c8d;
+          font-size: 0.875rem;
+        }
+      }
+    }
+
+    .stock-actions {
+      display: flex;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+
+      button {
+        flex: 1;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+
+        &.btn-edit {
+          background: #f1c40f;
+          color: white;
+
+          &:hover {
+            background: #f39c12;
+          }
+        }
+
+        &.btn-delete {
+          background: #e74c3c;
+          color: white;
+
+          &:hover {
+            background: #c0392b;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+
+  .modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease;
+
+    h3 {
+      color: #2c3e50;
+      margin: 0 0 1rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 1.5rem;
+
+      button {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+
+        &.btn-secondary {
+          background: #95a5a6;
+          color: white;
+
+          &:hover {
+            background: #7f8c8d;
+          }
+        }
+
+        &.btn-danger {
+          background: #e74c3c;
+          color: white;
+
+          &:hover {
+            background: #c0392b;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+.filters-section {
+  margin-bottom: 2rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  .search-box {
+    position: relative;
+    margin-bottom: 1.5rem;
+
+    i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #95a5a6;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+      }
+    }
+  }
+
+  .filters {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+
+    .filter-group {
+      flex: 1;
+      min-width: 200px;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #34495e;
+        font-weight: 500;
+      }
+
+      .filter-select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        background: white;
+        transition: all 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #3498db;
+          box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+      }
+    }
+  }
+}
+
+// Add status indicators to stock cards
+.stock-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .stock-content {
+    margin-bottom: 1.5rem;
+
+    h3 {
+      font-size: 1.25rem;
+      color: #2c3e50;
+      margin: 0 0 1rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0.5rem 0;
+      color: #5d6d7e;
+      font-size: 0.95rem;
+      line-height: 1.5;
+  
+      &.warehouse {
+        color: #34495e;
+        font-weight: 500;
+      }
+  
+      &.quantity {
+        color: #2980b9;
+        font-weight: 500;
+      }
+  
+      &.date {
+        color: #7f8c8d;
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  .stock-actions {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  
+    button {
+      flex: 1;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+  
+      &.btn-edit {
+        background: #f1c40f;
+        color: white;
+  
+        &:hover {
+          background: #f39c12;
+        }
+      }
+  
+      &.btn-delete {
+        background: #e74c3c;
+        color: white;
+  
+        &:hover {
+          background: #c0392b;
+        }
+      }
+    }
+  }
+}
+

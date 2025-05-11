@@ -1,0 +1,54 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Modifier Stock' : 'Ajouter Nouveau Stock' }}</h2>
+  
+  <form [formGroup]="stockForm" (ngSubmit)="onSubmit()" class="stock-form">
+    <div class="form-group">
+      <label for="produit">Produit</label>
+      <select id="produit" formControlName="produit" class="form-control">
+        <option value="">Sélectionner un produit</option>
+        <option *ngFor="let product of products" [ngValue]="product">
+          {{product.nom}}
+        </option>
+      </select>
+      <div class="error-message" *ngIf="stockForm.get('produit')?.touched && stockForm.get('produit')?.invalid">
+        Le produit est requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="entrepot">Entrepôt</label>
+      <select id="entrepot" formControlName="entrepot" class="form-control">
+        <option value="">Sélectionner un entrepôt</option>
+        <option *ngFor="let warehouse of warehouses" [ngValue]="warehouse">
+          {{warehouse.nom}}
+        </option>
+      </select>
+      <div class="error-message" *ngIf="stockForm.get('entrepot')?.touched && stockForm.get('entrepot')?.invalid">
+        L'entrepôt est requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="quantite">Quantité</label>
+      <input id="quantite" type="number" formControlName="quantite" class="form-control">
+      <div class="error-message" *ngIf="stockForm.get('quantite')?.touched && stockForm.get('quantite')?.invalid">
+        La quantité est requise et doit être positive
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="seuilAlerte">Seuil d'Alerte</label>
+      <input id="seuilAlerte" type="number" formControlName="seuilAlerte" class="form-control">
+      <div class="error-message" *ngIf="stockForm.get('seuilAlerte')?.touched && stockForm.get('seuilAlerte')?.invalid">
+        Le seuil d'alerte doit être positif et inférieur à la quantité
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" routerLink="/stocks">Annuler</button>
+      <button type="submit" class="btn btn-primary" [disabled]="stockForm.invalid">
+        {{ isEditMode ? 'Modifier' : 'Créer' }} Stock
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,38 @@
+<div class="warehouses-container">
+  <div class="warehouses-header">
+    <h1>Entrepôts</h1>
+    <button class="btn btn-primary" routerLink="add">
+      <i class="fas fa-plus"></i> Ajouter Entrepôt
+    </button>
+  </div>
+
+  <div class="warehouses-grid">
+    <div *ngFor="let warehouse of warehouses" class="warehouse-card">
+      <div class="warehouse-content">
+        <h3>{{warehouse.nom}}</h3>
+        <p class="address">Adresse: {{warehouse.adresse}}</p>
+        <p class="capacity">Capacité: {{warehouse.capacite}}</p>
+      </div>
+      <div class="warehouse-actions">
+        <button class="btn btn-edit" [routerLink]="['/warehouses/edit', warehouse.id]">
+          <i class="fas fa-edit"></i> Modifier
+        </button>
+        <button class="btn btn-delete" (click)="confirmDelete(warehouse)">
+          <i class="fas fa-trash"></i> Supprimer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal" *ngIf="showDeleteModal">
+    <div class="modal-content">
+      <h3>Confirmer la suppression</h3>
+      <p>Êtes-vous sûr de vouloir supprimer l'entrepôt {{selectedWarehouse?.nom}}?</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" (click)="cancelDelete()">Annuler</button>
+        <button class="btn btn-danger" (click)="deleteWarehouse()">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>

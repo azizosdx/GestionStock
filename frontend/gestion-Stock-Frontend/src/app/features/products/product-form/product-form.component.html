@@ -1,0 +1,52 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Modifier Produit' : 'Ajouter Nouveau Produit' }}</h2>
+  
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+    <div class="form-group">
+      <label for="nom">Nom du Produit</label>
+      <input id="nom" type="text" formControlName="nom" class="form-control">
+      <div class="error-message" *ngIf="productForm.get('nom')?.touched && productForm.get('nom')?.invalid">
+        Le nom est requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="categorie">Catégorie</label>
+      <input id="categorie" type="text" formControlName="categorie" class="form-control">
+      <div class="error-message" *ngIf="productForm.get('categorie')?.touched && productForm.get('categorie')?.invalid">
+        La catégorie est requise
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="prix">Prix</label>
+      <input id="prix" type="number" formControlName="prix" class="form-control">
+      <div class="error-message" *ngIf="productForm.get('prix')?.touched && productForm.get('prix')?.invalid">
+        Le prix est requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="fournisseur">Fournisseur</label>
+      <input id="fournisseur" type="text" formControlName="fournisseur" class="form-control">
+      <div class="error-message" *ngIf="productForm.get('fournisseur')?.touched && productForm.get('fournisseur')?.invalid">
+        Le fournisseur est requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="seuilMin">Seuil Minimum</label>
+      <input id="seuilMin" type="number" formControlName="seuilMin" class="form-control">
+      <div class="error-message" *ngIf="productForm.get('seuilMin')?.touched && productForm.get('seuilMin')?.invalid">
+        Le seuil minimum est requis
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" routerLink="/products">Annuler</button>
+      <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">
+        {{ isEditMode ? 'Modifier' : 'Créer' }} Produit
+      </button>
+    </div>
+  </form>
+</div>

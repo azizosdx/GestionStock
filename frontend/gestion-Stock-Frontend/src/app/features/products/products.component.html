@@ -1,0 +1,40 @@
+<div class="products-container">
+  <div class="products-header">
+    <h1>Produits</h1>
+    <button class="btn btn-primary" routerLink="add">
+      <i class="fas fa-plus"></i> Ajouter Produit
+    </button>
+  </div>
+
+  <div class="products-grid">
+    <div *ngFor="let product of products" class="product-card">
+      <div class="product-content">
+        <h3>{{product.nom}}</h3>
+        <p class="category">Catégorie: {{product.categorie}}</p>
+        <p class="price">Prix: {{product.prix | currency}}</p>
+        <p class="supplier">Fournisseur: {{product.fournisseur}}</p>
+        <p class="min-threshold">Seuil Minimum: {{product.seuilMin}}</p>
+      </div>
+      <div class="product-actions">
+        <button class="btn btn-edit" [routerLink]="['/products/edit', product.id]">
+          <i class="fas fa-edit"></i> Modifier
+        </button>
+        <button class="btn btn-delete" (click)="confirmDelete(product)">
+          <i class="fas fa-trash"></i> Supprimer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal" *ngIf="showDeleteModal">
+    <div class="modal-content">
+      <h3>Confirmer la suppression</h3>
+      <p>Êtes-vous sûr de vouloir supprimer {{selectedProduct?.nom}}?</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" (click)="cancelDelete()">Annuler</button>
+        <button class="btn btn-danger" (click)="deleteProduct()">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
