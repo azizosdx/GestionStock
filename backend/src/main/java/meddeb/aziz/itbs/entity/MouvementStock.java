@@ -46,7 +46,7 @@ public class MouvementStock {
     @JoinColumn(name = "entrepot_id", nullable = false)
     private Entrepot entrepot;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "utilisateur_id", nullable = false)
-    private User utilisateur;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "utilisateur_id", nullable = true)
+//    private User utilisateur;
 }

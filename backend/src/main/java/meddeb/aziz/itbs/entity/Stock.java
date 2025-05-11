@@ -40,5 +40,7 @@ public class Stock {
 	    private int quantite;
 	    
 	    private int seuilAlerte;
+
+
 	
 }

@@ -5,10 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,5 +31,7 @@ public class Entrepot {
     private String adresse;
     
     private int capacite;
-	
+
+    @OneToMany(mappedBy="entrepot")
+    private List<Stock> Stocks = new ArrayList<Stock>();
 }
