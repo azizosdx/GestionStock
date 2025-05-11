@@ -12,4 +12,6 @@ public class StockDTO {
     private int quantite;
 
     private EntrepotDTO entrepot;
+
+    private int seuilAlerte;
 }
