@@ -1,8 +1,11 @@
 package meddeb.aziz.itbs.mapper;
 
-import meddeb.aziz.itbs.dto.ProduitDTO;
-import meddeb.aziz.itbs.entity.Produit;
+import meddeb.aziz.itbs.dto.StockDTO;
+import meddeb.aziz.itbs.dto.StockDTO;
+import meddeb.aziz.itbs.entity.Stock;
+import meddeb.aziz.itbs.entity.Stock;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.List;
@@ -10,11 +13,11 @@ import java.util.List;
 @Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,componentModel = "spring")
 public interface StockMapper {
 
-
-    ProduitDTO produitToProduitDTO(Produit produit);
-    Produit produitDTOToProduit(ProduitDTO produitDTO);
-    List<ProduitDTO> produitsToProduitsDTO(List<Produit> produits);
-    List<Produit> produitsDTOToProduits(List<ProduitDTO> produitsDTO);
+    void stockDTOToEntity(StockDTO stockDto, @MappingTarget Stock stock);
+    StockDTO stockToStockDTO(Stock stock);
+    Stock stockDTOToStock(StockDTO stockDTO);
+    List<StockDTO> stocksToStocksDTO(List<Stock> stocks);
+    List<Stock> stocksDTOToStocks(List<StockDTO> stockDTOs);
 
 
 
