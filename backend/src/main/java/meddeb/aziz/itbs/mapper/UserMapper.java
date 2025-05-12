@@ -13,10 +13,10 @@ public interface UserMapper {
 
     UserDTO userToUserDTO(User user);
 
-    User userDTOToUser(UserDTO userDTO);
+    User userDTOToEntity(UserDTO userDTO);
 
     List<UserDTO> usersToUsersDTO(List<User> users);
 
-    List<User> usersDTOToUsers(List<UserDTO> usersDTO);
+    List<User> usersDTOToUsersEntity(List<UserDTO> usersDTO);
 
 }

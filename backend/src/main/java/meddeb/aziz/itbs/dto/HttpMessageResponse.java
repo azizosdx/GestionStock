@@ -3,23 +3,12 @@ package meddeb.aziz.itbs.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
-
-	private int id;
-	 
-	private String email; 
-
-    private String nom;
-
-    private String role;
-	
+public class HttpMessageResponse {
+    private String message;
 }
